@@ -332,6 +332,7 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 500; line-height: 1.08;
 .field.invalid .err { display: block; }
 .form__msg { display: none; margin-top: 18px; padding: 14px 18px; border-radius: var(--r-sm); background: color-mix(in srgb, var(--gold) 22%, var(--white)); border: 1px solid var(--bronze); font-size: 14.5px; font-weight: 600; color: var(--bronze-deep); }
 .form__msg.show { display: block; }
+.form__msg--err { background: #fbeae6; border-color: #c0563b; color: #8f2f1c; }
 
 .map { border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
 .map iframe { width: 100%; height: 340px; border: 0; display: block; filter: grayscale(.3) sepia(.12); }

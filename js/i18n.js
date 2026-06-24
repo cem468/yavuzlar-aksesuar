@@ -199,6 +199,7 @@ const translations = {
     "ct.f.err.email": "Geçerli bir e-posta girin.",
     "ct.f.err.msg": "Lütfen bir mesaj yazın.",
     "ct.f.success": "Teşekkürler! Mesajınız alındı, en kısa sürede dönüş yapacağız.",
+    "ct.f.error": "Mesaj gönderilemedi. Lütfen tekrar deneyin ya da e-posta/WhatsApp ile ulaşın.",
 
     /* BİLGİ (SEO) page */
     "bi.crumb": "Bilgi",
@@ -415,6 +416,7 @@ const translations = {
     "ct.f.err.email": "Please enter a valid email.",
     "ct.f.err.msg": "Please write a message.",
     "ct.f.success": "Thank you! Your message has been received, we'll get back to you soon.",
+    "ct.f.error": "Message could not be sent. Please try again or reach us by email/WhatsApp.",
 
     /* INFO (SEO) page */
     "bi.crumb": "Info",

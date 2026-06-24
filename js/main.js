@@ -140,11 +140,21 @@
   function initForm() {
     const form = document.querySelector(".form");
     if (!form) return;
-    const msg = form.querySelector(".form__msg");
+    const msg = form.querySelector(".form__msg:not(.form__msg--err)");
+    const errMsg = form.querySelector(".form__msg--err");
+    const submitBtn = form.querySelector('[type="submit"]');
+    const submitLabel = submitBtn ? submitBtn.innerHTML : "";
 
     const setInvalid = (field, bad) => field.classList.toggle("invalid", bad);
+    const showMsg = (el) => {
+      [msg, errMsg].forEach((m) => m && m.classList.remove("show"));
+      if (!el) return;
+      el.classList.add("show");
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      setTimeout(() => el.classList.remove("show"), 7000);
+    };
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       let ok = true;
       const name = form.querySelector('[name="name"]');
@@ -166,11 +176,31 @@
       }
       if (!ok) return;
 
-      form.reset();
-      if (msg) {
-        msg.classList.add("show");
-        msg.scrollIntoView({ behavior: "smooth", block: "center" });
-        setTimeout(() => msg.classList.remove("show"), 6000);
+      const endpoint = form.getAttribute("action") || "";
+      // Formspree henüz bağlı değilse (placeholder) yerel başarı mesajı göster
+      if (!endpoint || endpoint.indexOf("YOUR_FORM_ID") !== -1) {
+        form.reset();
+        showMsg(msg);
+        return;
+      }
+
+      const lang = document.documentElement.getAttribute("lang") || "tr";
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = lang === "en" ? "Sending…" : "Gönderiliyor…";
+      }
+      try {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form),
+        });
+        if (res.ok) { form.reset(); showMsg(msg); }
+        else { showMsg(errMsg); }
+      } catch (_) {
+        showMsg(errMsg);
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = submitLabel; }
       }
     });
 
