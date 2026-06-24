@@ -80,10 +80,12 @@
           </div>
 
           <!-- FORM -->
-          <form class="form reveal" data-delay="1" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+          <form class="form reveal" data-delay="1" action="https://api.web3forms.com/submit" method="POST" novalidate>
             <h3 style="font-size:24px;margin-bottom:22px" data-i18n="ct.form.title">Teklif & Bilgi Formu</h3>
-            <input type="hidden" name="_subject" value="Yavuzlar Aksesuar — Web Sitesi İletişim Formu">
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
+            <input type="hidden" name="subject" value="Yavuzlar Aksesuar — Web Sitesi İletişim Formu">
+            <input type="hidden" name="from_name" value="Yavuzlar Aksesuar Web Sitesi">
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
             <div class="field">
               <label for="name" data-i18n="ct.f.name">Ad Soyad</label>
               <input type="text" id="name" name="name" data-i18n-attr="placeholder:ct.f.namep" placeholder="Adınız Soyadınız" autocomplete="name">

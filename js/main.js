@@ -177,8 +177,13 @@
       if (!ok) return;
 
       const endpoint = form.getAttribute("action") || "";
-      // Formspree henüz bağlı değilse (placeholder) yerel başarı mesajı göster
-      if (!endpoint || endpoint.indexOf("YOUR_FORM_ID") !== -1) {
+      const akField = form.querySelector('[name="access_key"]');
+      // Servis henüz bağlı değilse (placeholder) yerel başarı mesajı göster
+      const notConfigured =
+        !endpoint ||
+        endpoint.indexOf("YOUR_FORM_ID") !== -1 ||
+        (akField && akField.value.indexOf("YOUR_ACCESS_KEY") !== -1);
+      if (notConfigured) {
         form.reset();
         showMsg(msg);
         return;
